@@ -7,7 +7,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
@@ -48,16 +47,6 @@ public class ChaloExceptionHandler extends ResponseEntityExceptionHandler {
                 .build(), HttpStatus.NOT_FOUND);
     }
 
-    @ExceptionHandler(CabAlreadyExistsException.class)
-    public final ResponseEntity<Object> handleCabAlreadyExistsException(CabAlreadyExistsException ex,
-                                                                        WebRequest webRequest) {
-        return new ResponseEntity<>(ExceptionResponse.builder()
-                .timeStamp(new Date())
-                .message(ex.getMessage())
-                .details(webRequest.getDescription(false))
-                .build(), HttpStatus.IM_USED);
-    }
-
     @ExceptionHandler(NoCabsAvailableException.class)
     public final ResponseEntity<Object> handleNoCabsAvailableException(NoCabsAvailableException ex,
                                                                        WebRequest webRequest) {
@@ -66,16 +55,6 @@ public class ChaloExceptionHandler extends ResponseEntityExceptionHandler {
                 .message(ex.getMessage())
                 .details(webRequest.getDescription(false))
                 .build(), HttpStatus.NOT_FOUND);
-    }
-
-    @ExceptionHandler(RiderAlreadyExistsException.class)
-    public final ResponseEntity<Object> handleRiderAlreadyExistsException(RiderAlreadyExistsException ex,
-                                                                          WebRequest webRequest) {
-        return new ResponseEntity<>(ExceptionResponse.builder()
-                .timeStamp(new Date())
-                .message(ex.getMessage())
-                .details(webRequest.getDescription(false))
-                .build(), HttpStatus.IM_USED);
     }
 
     @ExceptionHandler(RiderNotFoundException.class)
@@ -106,5 +85,15 @@ public class ChaloExceptionHandler extends ResponseEntityExceptionHandler {
                 .message(ex.getMessage())
                 .details(webRequest.getDescription(false))
                 .build(), HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(RiderAlreadyInTripException.class)
+    public final ResponseEntity<Object> handleRiderAlreadyInTripException(RiderAlreadyInTripException ex,
+                                                                          WebRequest webRequest) {
+        return new ResponseEntity<>(ExceptionResponse.builder()
+                .timeStamp(new Date())
+                .message(ex.getMessage())
+                .details(webRequest.getDescription(false))
+                .build(), HttpStatus.NOT_ACCEPTABLE);
     }
 }

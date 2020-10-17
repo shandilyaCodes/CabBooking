@@ -11,13 +11,12 @@ import lombok.ToString;
 @ToString
 @AllArgsConstructor
 public class Rider {
-    private String uniqueId;
+    private Long id;
     private String riderName;
 
     public RiderDTO mapToRiderDTO() {
         return RiderDTO.builder()
-                .uniqueId(this.uniqueId)
-                .riderName(this.riderName)
+                .riderName(riderName)
                 .build();
     }
 }

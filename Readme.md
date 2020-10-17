@@ -31,12 +31,9 @@ Driver can switch of his services -- tested
 
 A rider can book a cab -- tested
 
-Fetch history of the rides takes by a rider -- Improve Required to use better ID
+Fetch history of the rides takes by a rider -- tested
 
-End the trip -- Adding duplicate records to the cab
-
-MAIN : REMOVE the ID mapping
-
+End the trip -- tested
 
 Testing Flow
 ------------
@@ -99,3 +96,4 @@ Testing Flow
 
 3. Fetch the ride history
 {}
+

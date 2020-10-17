@@ -1,7 +1,6 @@
 package com.shandilya.chalo.service;
 
 import com.shandilya.chalo.dto.CabDTO;
-import com.shandilya.chalo.exceptions.CabAlreadyExistsException;
 import com.shandilya.chalo.exceptions.CabNotFoundException;
 import com.shandilya.chalo.exceptions.NoCabsFoundInRange;
 import com.shandilya.chalo.model.Cab;
@@ -24,22 +23,15 @@ public class CabService {
     private final CabRepository cabRepository;
 
     public void createCab(@NonNull final Cab cab) {
-        if (cabRepository.findByLicencePlate(cab.getLicencePlate()).size() > 0) {
-            throw new CabAlreadyExistsException("Cab With Licence Plate Number : " + cab.getLicencePlate() + " Exists!");
-        }
         cabRepository.save(cab.mapToCabDTO());
     }
 
-    /*public void updateCab(@NonNull final CabDTO cabDTO) {
-        cabRepository.save(cabDTO);
-    }*/
-
-    public Cab getCabByLicencePlate(@NonNull final String licencePlateNumber) {
-        final List<CabDTO> cabDTOList = cabRepository.findByLicencePlate(licencePlateNumber);
-        if (cabDTOList.isEmpty()) {
-            throw new CabNotFoundException("Cab with ID : " + licencePlateNumber + " is not present!");
+    public Cab getCabById(@NonNull final Long cabId) {
+        final Optional<CabDTO> cabDTO = cabRepository.findById(cabId);
+        if (!cabDTO.isPresent()) {
+            throw new CabNotFoundException("Cab with ID : " + cabId + " is not present!");
         }
-        return cabDTOList.get(0).mapToCab();
+        return cabDTO.get().mapToCab();
     }
 
     public void updateCabLocation(@NonNull final Long cabId, @NonNull final Location location) {

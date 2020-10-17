@@ -9,16 +9,15 @@ import lombok.ToString;
 @Builder
 @ToString
 public class Cab {
-    private String licencePlate;
+    private Long id;
     private String driverName;
     private Location currentLocation;
     private Boolean isAvailable;
 
     public CabDTO mapToCabDTO() {
         return CabDTO.builder()
-                .licencePlate(this.licencePlate)
-                .driverName(this.driverName)
-                .isAvailable(this.isAvailable)
+                .driverName(driverName)
+                .isAvailable(isAvailable)
                 .build();
     }
 }

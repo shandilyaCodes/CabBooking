@@ -21,17 +21,16 @@ public class CabDTO {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long cabId;
-    private String licencePlate;
     private String driverName;
     private String currentLocation;
     private Boolean isAvailable;
 
     public Cab mapToCab() {
         return Cab.builder()
-                .currentLocation(CommonUtils.stringToLocation(this.currentLocation))
-                .driverName(this.driverName)
-                .licencePlate(this.licencePlate)
-                .isAvailable(this.isAvailable)
+                .id(cabId)
+                .currentLocation(CommonUtils.stringToLocation(currentLocation))
+                .driverName(driverName)
+                .isAvailable(isAvailable)
                 .build();
     }
 }

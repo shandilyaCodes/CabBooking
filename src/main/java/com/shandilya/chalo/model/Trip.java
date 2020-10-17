@@ -8,8 +8,8 @@ import lombok.ToString;
 @Builder
 @ToString
 public class Trip {
-    private String riderUniqueId;
-    private String licencePlateNumber;
+    private Long riderId;
+    private Long cabId;
     private String tripStatus;
     private Double fare;
     private Location source;

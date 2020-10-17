@@ -18,9 +18,9 @@ import javax.persistence.*;
 public class TripDTO {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long tripId;
-    private String riderUniqueId;
-    private String cabLicencePlateNumber;
+    private Long id;
+    private Long riderId;
+    private Long cabId;
     private Double fare;
     private String sourceLocation;
     private String destinationLocation;
@@ -28,8 +28,8 @@ public class TripDTO {
 
     public Trip mapToTrip() {
         return Trip.builder()
-                .riderUniqueId(riderUniqueId)
-                .licencePlateNumber(cabLicencePlateNumber)
+                .riderId(riderId)
+                .cabId(cabId)
                 .fare(fare)
                 .source(CommonUtils.stringToLocation(sourceLocation))
                 .destination(CommonUtils.stringToLocation(destinationLocation))

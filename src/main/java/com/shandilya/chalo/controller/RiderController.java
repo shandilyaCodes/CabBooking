@@ -34,9 +34,9 @@ public class RiderController {
         return ResponseEntity.ok("");
     }
 
-    @GetMapping("/rides/{riderUniqueId}")
-    public ResponseEntity<?> fetchRideHistory(@PathVariable("riderUniqueId") String riderUniqueId) {
-        final List<Trip> trips = riderService.getAllTrips(riderUniqueId);
+    @GetMapping("/rides/{riderId}")
+    public ResponseEntity<?> fetchRideHistory(@PathVariable("riderId") Long riderId) {
+        final List<Trip> trips = riderService.getAllTrips(riderId);
         return ResponseEntity.ok(trips);
     }
 }

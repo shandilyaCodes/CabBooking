@@ -18,14 +18,13 @@ public class RiderDTO {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long riderId;
-    private String uniqueId;
+    private Long id;
     private String riderName;
 
     public Rider mapToRider() {
         return Rider.builder()
-                .uniqueId(this.uniqueId)
-                .riderName(this.riderName)
+                .id(id)
+                .riderName(riderName)
                 .build();
     }
 }
